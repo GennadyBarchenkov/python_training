@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-import time     # необходим для функции ожидания после логаута без которой тесты падают
 
 
 class SessionHelper:
@@ -16,5 +15,6 @@ class SessionHelper:
 
     def logout(self):
         wd = self.app.driver
+
         wd.find_element(By.LINK_TEXT, "Logout").click()
-        time.sleep(0.5)     # замена на функцию wd.find_element(By.NAME, "user") не помогает, тесты все равно падают
+        wd.find_element(By.NAME, "user")
