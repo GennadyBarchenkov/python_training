@@ -9,7 +9,8 @@ class ContactHelper:
 
     def open_home_page(self):
         wd = self.app.driver
-        wd.find_element(By.LINK_TEXT, "home").click()
+        if not (wd.current_url.endswith("/addressbook/")):
+            wd.find_element(By.LINK_TEXT, "home").click()
 
     def create(self, contact):
         wd = self.app.driver
@@ -54,7 +55,6 @@ class ContactHelper:
     def change_datafield_value(self, data_field_name, text):
         wd = self.app.driver
         if text is not None:
-            # wd.find_element(By.NAME, data_field_name).clear()
             Select(wd.find_element(By.NAME, data_field_name)).select_by_visible_text(text)
 
     def delete_first(self):
