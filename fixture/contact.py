@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
 
 
 class ContactHelper:
@@ -57,15 +58,20 @@ class ContactHelper:
         wd.find_element(By.NAME, "email2").send_keys(contact.email2)
         wd.find_element(By.NAME, "email3").send_keys(contact.email3)
         wd.find_element(By.NAME, "homepage").send_keys(contact.homepage)
-        dropdown = wd.find_element(By.NAME, "bday")
-        dropdown.find_element(By.XPATH, "//option[. = '%s']" % contact.bday).click()
-        dropdown = wd.find_element(By.NAME, "bmonth")
-        dropdown.find_element(By.XPATH, "//option[. = '%s']" % contact.bmonth).click()
+        select_element = wd.find_element(By.NAME, "bday")
+        select_object = Select(select_element)
+        select_object.select_by_visible_text('%s' % contact.bday)
+        select_element = wd.find_element(By.NAME, "bmonth")
+        select_object = Select(select_element)
+        select_object.select_by_visible_text('%s' % contact.bmonth)
         wd.find_element(By.NAME, "byear").send_keys(contact.byear)
-        dropdown = wd.find_element(By.NAME, "aday")
-        dropdown.find_element(By.XPATH, "//option[. = '%s']" % contact.aday).click()
-        dropdown = wd.find_element(By.NAME, "amonth")
-        dropdown.find_element(By.XPATH, "//option[. = '%s']" % contact.amonth).click()
-        wd.find_element(By.NAME, "ayear").send_keys("%s" % contact.ayear)
+        select_element = wd.find_element(By.NAME, "aday")
+        select_object = Select(select_element)
+        select_object.select_by_visible_text('%s' % contact.aday)
+        select_element = wd.find_element(By.NAME, "amonth")
+        select_object = Select(select_element)
+        select_object.select_by_visible_text('%s' % contact.amonth)
+        wd.find_element(By.NAME, "byear").send_keys(contact.byear)
+        wd.find_element(By.NAME, "ayear").send_keys(contact.ayear)
         wd.find_element(By.NAME, "address2").send_keys(contact.address2)
         wd.find_element(By.NAME, "phone2").send_keys(contact.phone2)
