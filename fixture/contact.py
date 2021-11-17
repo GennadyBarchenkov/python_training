@@ -77,3 +77,8 @@ class ContactHelper:
         # submit modification
         wd.find_element(By.NAME, "update").click()
         self.open_home_page()
+
+    def count(self):
+        wd = self.app.driver
+        self.open_home_page()
+        return len(wd.find_elements(By.NAME, "selected[]"))
