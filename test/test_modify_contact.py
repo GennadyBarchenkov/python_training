@@ -1,3 +1,5 @@
+from time import sleep
+
 from model.contact import Contact
 
 
@@ -15,9 +17,12 @@ def test_edit_first_contact(app):
                       fax="edit11", email="edit12", email2="edit13", email3="edit14",
                       homepage="edit15", bday="13", bmonth="December", byear="2000", aday="13",
                       amonth="January", ayear="2000", address2="edit16", phone2="edit17")
+    contact.id = old_contacts[0].id
     app.contact.modify_first_contact(contact)
     new_contacts = app.contact.get_contact_list()
     assert len(old_contacts) == len(new_contacts)
+    old_contacts[0] = contact
+    assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
 
 
 def test_modify_contact_firstname(app):
@@ -38,9 +43,12 @@ def test_modify_contact_lastname(app):
         app.contact.create(Contact(lastname="test"))
     old_contacts = app.contact.get_contact_list()
     contact = Contact(lastname="New lastname")
+    contact.id = old_contacts[0].id
     app.contact.modify_first_contact(contact)
     new_contacts = app.contact.get_contact_list()
     assert len(old_contacts) == len(new_contacts)
+    old_contacts[0] = contact
+    assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
 
 
 def test_modify_contact_bday(app):
@@ -48,6 +56,9 @@ def test_modify_contact_bday(app):
         app.contact.create(Contact(bday="7"))
     old_contacts = app.contact.get_contact_list()
     contact = Contact(bday="30")
+    contact.id = old_contacts[0].id
     app.contact.modify_first_contact(contact)
     new_contacts = app.contact.get_contact_list()
     assert len(old_contacts) == len(new_contacts)
+    old_contacts[0] = contact
+    assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
