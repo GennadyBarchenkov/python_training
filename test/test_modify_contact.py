@@ -1,5 +1,3 @@
-from time import sleep
-
 from model.contact import Contact
 
 
