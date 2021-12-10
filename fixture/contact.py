@@ -59,11 +59,21 @@ class ContactHelper:
         if text is not None:
             Select(wd.find_element(By.NAME, data_field_name)).select_by_visible_text(text)
 
+    def select_first_contact(self):
+        wd = self.app.driver
+        wd.find_element(By.NAME, "selected[]").click()
+
+    def select_contact_by_index(self, index):
+        wd = self.app.driver
+        wd.find_elements(By.NAME, "selected[]")[index].click()
+
     def delete_first(self):
+        self.delete_contact_by_index(0)
+
+    def delete_contact_by_index(self, index):
         wd = self.app.driver
         self.open_home_page()
-        # select first contact
-        wd.find_element(By.NAME, "selected[]").click()
+        self.select_contact_by_index(index)
         # submit deletion
         wd.find_element(By.XPATH, "//input[@value=\'Delete\']").click()
         # confirm deletion
@@ -72,11 +82,14 @@ class ContactHelper:
         self.open_home_page()
         self.contact_cache = None
 
-    def modify_first_contact(self, new_contact_data):
+    def modify_first_contact(self):
+        self.modify_contact_by_index(0)
+
+    def modify_contact_by_index(self, index, new_contact_data):
         wd = self.app.driver
         self.open_home_page()
         # open edit contact
-        wd.find_element(By.XPATH, "//img[@title=\'Edit\']").click()
+        wd.find_elements(By.XPATH, "//img[@title=\'Edit\']")[index].click()
         self.fill_contact_form(new_contact_data)
         # submit modification
         wd.find_element(By.NAME, "update").click()
