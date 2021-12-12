@@ -11,7 +11,7 @@ class SessionHelper:
         self.app.open_home_page()
         wd.find_element(By.NAME, "user").send_keys(username)
         wd.find_element(By.NAME, "pass").send_keys(password)
-        wd.find_element(By.XPATH, "//input[@value=\'Login\']").click()
+        wd.find_element(By.XPATH, "//input[@value='Login']").click()
 
     def logout(self):
         wd = self.app.driver
@@ -24,7 +24,11 @@ class SessionHelper:
 
     def is_logged_in_as(self, username):
         wd = self.app.driver
-        return wd.find_element(By.XPATH, "//div[@id=\'top\']/form/b").text == "("+username+")"
+        return self.get_set_logged_user() == username
+
+    def get_set_logged_user(self):
+        wd = self.app.driver
+        return wd.find_element(By.XPATH, "//div[@id='top']/form/b").text[1:-1]
 
     def ensure_logout(self):
         wd = self.app.driver
