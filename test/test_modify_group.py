@@ -1,58 +1,54 @@
 from model.group import Group
-from random import randrange
+import random
 
 
-def test_edit_first_group(app):
-    if app.group.count() == 0:
+def test_full_edit_group(app, db):
+    if len(db.get_group_list()) == 0:
         app.group.create(Group(name="test", header="test", footer="test"))
-    old_groups = app.group.get_group_list()
-    index = randrange(len(old_groups))
+    old_groups = db.get_group_list()
     group = Group(name="edit1", header="edit2", footer="edit3")
-    group.id = old_groups[index].id
-    app.group.modify_group_by_index(index, group)
-    assert len(old_groups) == app.group.count()
-    new_groups = app.group.get_group_list()
-    old_groups[index] = group
+    select_group = random.choice(old_groups)
+    app.group.modify_group_by_id(select_group.id, group)
+    new_groups = db.get_group_list()
+    old_groups.remove(select_group)
+    old_groups.append(group)
     assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
 
 
-def test_modify_group_name(app):
-    if app.group.count() == 0:
+def test_modify_group_name(app, db):
+    if len(db.get_group_list()) == 0:
         app.group.create(Group(name="test"))
-    old_groups = app.group.get_group_list()
-    index = randrange(len(old_groups))
+    old_groups = db.get_group_list()
     group = Group(name="New Group")
-    group.id = old_groups[index].id
-    app.group.modify_group_by_index(index, group)
-    assert len(old_groups) == app.group.count()
-    new_groups = app.group.get_group_list()
-    old_groups[index] = group
+    select_group = random.choice(old_groups)
+    app.group.modify_group_by_id(select_group.id, group)
+    new_groups = db.get_group_list()
+    old_groups.remove(select_group)
+    old_groups.append(group)
     assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
 
 
-def test_modify_group_header(app):
-    if app.group.count() == 0:
+def test_modify_group_header(app, db):
+    if len(db.get_group_list()) == 0:
         app.group.create(Group(header="test"))
-    old_groups = app.group.get_group_list()
-    index = randrange(len(old_groups))
+    old_groups = db.get_group_list()
     group = Group(header="New header")
-    group.id = old_groups[index].id
-    app.group.modify_group_by_index(index, group)
-    assert len(old_groups) == app.group.count()
-    new_groups = app.group.get_group_list()
-    old_groups[index] = group
+    select_group = random.choice(old_groups)
+    app.group.modify_group_by_id(select_group.id, group)
+    new_groups = db.get_group_list()
+    old_groups.remove(select_group)
+    old_groups.append(group)
     assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
 
 
-def test_modify_group_footer(app):
-    if app.group.count() == 0:
+def test_modify_group_footer(app, db):
+    if len(db.get_group_list()) == 0:
         app.group.create(Group(footer="test"))
-    old_groups = app.group.get_group_list()
-    index = randrange(len(old_groups))
-    group = Group(footer="test")
-    group.id = old_groups[index].id
-    app.group.modify_group_by_index(index, group)
-    assert len(old_groups) == app.group.count()
-    new_groups = app.group.get_group_list()
-    old_groups[index] = group
+    old_groups = db.get_group_list()
+    group = Group(footer="New footer")
+    select_group = random.choice(old_groups)
+    app.group.modify_group_by_id(select_group.id, group)
+    new_groups = db.get_group_list()
+    old_groups.remove(select_group)
+    old_groups.append(group)
     assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
