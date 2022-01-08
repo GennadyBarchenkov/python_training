@@ -2,7 +2,7 @@ from model.contact import Contact
 import random
 
 
-def test_full_edit_contact(app, db):
+def test_full_edit_contact(app, db, check_ui):
     if len(db.get_contact_list()) == 0:
         app.contact.create(Contact(firstname="test", middlename="test", lastname="test", nickname="test", title="test",
                                    company="test", address="test", home_telephone="test", mobile_telephone="test",
@@ -23,9 +23,11 @@ def test_full_edit_contact(app, db):
     old_contacts.remove(select_contact)
     old_contacts.append(contact)
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
+    if check_ui:
+        assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(), key=Contact.id_or_max)
 
 
-def test_modify_contact_firstname(app, db):
+def test_modify_contact_firstname(app, db, check_ui):
     if len(db.get_contact_list()) == 0:
         app.contact.create(Contact(firstname="test"))
     old_contacts = db.get_contact_list()
@@ -37,9 +39,11 @@ def test_modify_contact_firstname(app, db):
     old_contacts.remove(select_contact)
     old_contacts.append(contact)
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
+    if check_ui:
+        assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(), key=Contact.id_or_max)
 
 
-def test_modify_contact_lastname(app, db):
+def test_modify_contact_lastname(app, db, check_ui):
     if len(db.get_contact_list()) == 0:
         app.contact.create(Contact(lastname="test"))
     old_contacts = db.get_contact_list()
@@ -51,9 +55,11 @@ def test_modify_contact_lastname(app, db):
     old_contacts.remove(select_contact)
     old_contacts.append(contact)
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
+    if check_ui:
+        assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(), key=Contact.id_or_max)
 
 
-def test_modify_contact_bday(app, db):
+def test_modify_contact_bday(app, db, check_ui):
     if len(db.get_contact_list()) == 0:
         app.contact.create(Contact(bday="7"))
     old_contacts = db.get_contact_list()
@@ -65,3 +71,5 @@ def test_modify_contact_bday(app, db):
     old_contacts.remove(select_contact)
     old_contacts.append(contact)
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
+    if check_ui:
+        assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(), key=Contact.id_or_max)
