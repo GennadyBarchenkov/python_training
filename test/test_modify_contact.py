@@ -17,8 +17,8 @@ def test_full_edit_contact(app, db, check_ui):
                       homepage="edit15", bday="13", bmonth="December", byear="2000", aday="13",
                       amonth="January", ayear="2000", address2="edit16", phone2="edit17")
     select_contact = random.choice(old_contacts)
-    index = old_contacts.index(Contact(id="%s" % select_contact.id))
-    app.contact.modify_contact_by_index(index, contact)
+    contact.id = select_contact.id
+    app.contact.modify_contact_by_id(select_contact.id, contact)
     new_contacts = db.get_contact_list()
     old_contacts.remove(select_contact)
     old_contacts.append(contact)
@@ -33,8 +33,8 @@ def test_modify_contact_firstname(app, db, check_ui):
     old_contacts = db.get_contact_list()
     contact = Contact(firstname="New_firstname")
     select_contact = random.choice(old_contacts)
-    index = old_contacts.index(Contact(id="%s" % select_contact.id))
-    app.contact.modify_contact_by_index(index, contact)
+    contact.id = select_contact.id
+    app.contact.modify_contact_by_id(select_contact.id, contact)
     new_contacts = db.get_contact_list()
     old_contacts.remove(select_contact)
     old_contacts.append(contact)
@@ -49,8 +49,8 @@ def test_modify_contact_lastname(app, db, check_ui):
     old_contacts = db.get_contact_list()
     contact = Contact(lastname="New_lastname")
     select_contact = random.choice(old_contacts)
-    index = old_contacts.index(Contact(id="%s" % select_contact.id))
-    app.contact.modify_contact_by_index(index, contact)
+    contact.id = select_contact.id
+    app.contact.modify_contact_by_id(select_contact.id, contact)
     new_contacts = db.get_contact_list()
     old_contacts.remove(select_contact)
     old_contacts.append(contact)
@@ -65,8 +65,8 @@ def test_modify_contact_bday(app, db, check_ui):
     old_contacts = db.get_contact_list()
     contact = Contact(bday="30")
     select_contact = random.choice(old_contacts)
-    index = old_contacts.index(Contact(id="%s" % select_contact.id))
-    app.contact.modify_contact_by_index(index, contact)
+    contact.id = select_contact.id
+    app.contact.modify_contact_by_id(select_contact.id, contact)
     new_contacts = db.get_contact_list()
     old_contacts.remove(select_contact)
     old_contacts.append(contact)

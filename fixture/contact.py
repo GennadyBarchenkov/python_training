@@ -68,6 +68,10 @@ class ContactHelper:
         wd = self.app.driver
         wd.find_elements(By.NAME, "selected[]")[index].click()
 
+    def select_contact_by_id(self, id):
+        wd = self.app.driver
+        wd.find_element(By.CSS_SELECTOR, "input[value='%s']" % id).click()
+
     def delete_first(self):
         self.delete_contact_by_index(0)
 
@@ -75,6 +79,18 @@ class ContactHelper:
         wd = self.app.driver
         self.open_home_page()
         self.select_contact_by_index(index)
+        # submit deletion
+        wd.find_element(By.XPATH, "//input[@value='Delete']").click()
+        # confirm deletion
+        wd.switch_to.alert.accept()
+        wd.find_element(By.CSS_SELECTOR, "div.msgbox")
+        self.open_home_page()
+        self.contact_cache = None
+
+    def delete_contact_by_id(self, id):
+        wd = self.app.driver
+        self.open_home_page()
+        self.select_contact_by_id(id)
         # submit deletion
         wd.find_element(By.XPATH, "//input[@value='Delete']").click()
         # confirm deletion
@@ -91,6 +107,17 @@ class ContactHelper:
         self.open_home_page()
         # open edit contact
         wd.find_elements(By.XPATH, "//img[@title='Edit']")[index].click()
+        self.fill_contact_form(new_contact_data)
+        # submit modification
+        wd.find_element(By.NAME, "update").click()
+        self.open_home_page()
+        self.contact_cache = None
+
+    def modify_contact_by_id(self, id, new_contact_data):
+        wd = self.app.driver
+        self.open_home_page()
+        # open edit contact
+        wd.find_element(By.CSS_SELECTOR, "a[href='edit.php?id=%s']" % id).click()
         self.fill_contact_form(new_contact_data)
         # submit modification
         wd.find_element(By.NAME, "update").click()
@@ -152,7 +179,7 @@ class ContactHelper:
         phone2 = wd.find_element(By.NAME, "phone2").get_attribute("value")
         return Contact(firstname=firstname, lastname=lastname, id=id, address=address,
                        email=email, email2=email2, email3=email3,
-                       home_telephone=home_telephone,mobile_telephone=mobile_telephone,
+                       home_telephone=home_telephone, mobile_telephone=mobile_telephone,
                        work_telephone=work_telephone, phone2=phone2)
 
     def get_contact_frow_view_page(self, index):
