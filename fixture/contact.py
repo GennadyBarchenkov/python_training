@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from model.contact import Contact
 import re
+import random
 
 
 class ContactHelper:
@@ -192,3 +193,48 @@ class ContactHelper:
         phone2 = re.search("P: (.*)", text).group(1)
         return Contact(home_telephone=home_telephone, mobile_telephone=mobile_telephone,
                        work_telephone=work_telephone, phone2=phone2)
+
+    def add_contact_to_group(self, contact_id, group_id):
+        wd = self.app.driver
+        self.open_home_page()
+        self.select_contact_by_id(contact_id)
+        Select(wd.find_element(By.NAME, "to_group")).select_by_value('%s' % group_id)
+        wd.find_element(By.XPATH, "//input[@value='Add to']").click()
+        self.open_home_page()
+        self.contact_cache = None
+
+    def remove_contact_from_group(self, contact_id, group_id):
+        wd = self.app.driver
+        self.open_home_page()
+        Select(wd.find_element(By.NAME, "group")).select_by_value('%s' % group_id)
+        self.select_contact_by_id(contact_id)
+        wd.find_element(By.NAME, "remove").click()
+        self.open_home_page()
+        self.contact_cache = None
+
+    def get_contacts_info_from_none_group(self):
+        if self.contact_cache is None:
+            wd = self.app.driver
+            self.open_home_page()
+            Select(wd.find_element(By.NAME, "group")).select_by_value('[none]')
+            self.contact_cache = []
+            for element in wd.find_elements(By.NAME, "entry"):
+                cells = element.find_elements(By.TAG_NAME, "td")
+                lastname_text = cells[1].text
+                firstname_text = cells[2].text
+                address_text = cells[3].text
+                all_emails = cells[4].text
+                id = cells[0].find_element(By.TAG_NAME, "input").get_attribute("value")
+                all_phones = cells[5].text
+                self.contact_cache.append(Contact(id=id, lastname=lastname_text, firstname=firstname_text,
+                                                  address=address_text, all_emails_from_home_page=all_emails,
+                                                  all_phones_from_home_page=all_phones))
+        return list(self.contact_cache)
+
+    def random_contact_from_none_group(self):
+        contacts = self.get_contacts_info_from_none_group()
+        if len(contacts) == 0:
+            self.create(Contact(firstname="test"))
+            contacts = self.get_contacts_info_from_none_group()
+        select_contact = random.choice(contacts)
+        return select_contact
