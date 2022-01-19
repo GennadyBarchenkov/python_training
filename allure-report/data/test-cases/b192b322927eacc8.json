@@ -1,0 +1,138 @@
+{
+  "uid" : "b192b322927eacc8",
+  "name" : "test_all_contacts_from_home_page_vs_db",
+  "fullName" : "test.test_contact_from_home_page#test_all_contacts_from_home_page_vs_db",
+  "historyId" : "7fd661a9647a7afd7e3a302e771f49e6",
+  "time" : {
+    "start" : 1642361609062,
+    "stop" : 1642361612552,
+    "duration" : 3490
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: assert 'email#>/}+DX...2\\nemail3+ k!' == 'email#>/}+DX...\\nemail3+  k!'\n    email#>/}+DX\n    email2\n  - email3+  k!\n  ?         -\n  + email3+ k!",
+  "statusTrace" : "app = <fixture.application.Application object at 0x000000000402BF70>\ndb = <fixture.db.DbFixture object at 0x000000000402B460>\n\n    def test_all_contacts_from_home_page_vs_db(app, db):\n        contacts_from_home_page = sorted(app.contact.get_contact_list(), key=Contact.id_or_max)\n        contacts_from_db = sorted(db.get_contact_list(), key=Contact.id_or_max)\n        for i in range(len(contacts_from_home_page)):\n            assert contacts_from_home_page[i].firstname == clear_space(contacts_from_db[i].firstname)\n            assert contacts_from_home_page[i].lastname == clear_space(contacts_from_db[i].lastname)\n            assert contacts_from_home_page[i].address == clear_space(contacts_from_db[i].address)\n>           assert contacts_from_home_page[i].all_emails_from_home_page == clear_space(merge_emails_like_on_home_page(\n                contacts_from_db[i]))\nE           AssertionError: assert 'email#>/}+DX...2\\nemail3+ k!' == 'email#>/}+DX...\\nemail3+  k!'\nE               email#>/}+DX\nE               email2\nE             - email3+  k!\nE             ?         -\nE             + email3+ k!\n\ntest\\test_contact_from_home_page.py:12: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "db",
+    "time" : {
+      "start" : 1642361567109,
+      "stop" : 1642361567120,
+      "duration" : 11
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "stop",
+    "time" : {
+      "start" : 1642361567109,
+      "stop" : 1642361567109,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "app",
+    "time" : {
+      "start" : 1642361608998,
+      "stop" : 1642361609061,
+      "duration" : 63
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "stop::fin",
+    "time" : {
+      "start" : 1642361647195,
+      "stop" : 1642361649732,
+      "duration" : 2537
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "db::fin",
+    "time" : {
+      "start" : 1642361649734,
+      "stop" : 1642361649734,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "test"
+  }, {
+    "name" : "suite",
+    "value" : "test_contact_from_home_page"
+  }, {
+    "name" : "host",
+    "value" : "PC"
+  }, {
+    "name" : "thread",
+    "value" : "7424-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "test.test_contact_from_home_page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "b192b322927eacc8.json",
+  "parameterValues" : [ ]
+}

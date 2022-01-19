@@ -1,0 +1,118 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "name" : "categories",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "AssertionError: assert [340::test:, ..., 345:::, ...] == [340::test:, ..., 345:::, ...]\n  Left contains one more item: None:lastnamew\"m]':firstname|u,>CK:middlename\n  Use -v to get the full diff",
+      "children" : [ {
+        "name" : "test_add_contact[None:lastnamew\"m]':firstname|u,>CK:middlename]",
+        "uid" : "f9c365b003c54aa",
+        "parentUid" : "8a6dd6b9353894785308784824571745",
+        "status" : "failed",
+        "time" : {
+          "start" : 1642361584406,
+          "stop" : 1642361588014,
+          "duration" : 3608
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "None:lastnamew\"m]':firstname|u,>CK:middlename" ]
+      } ],
+      "uid" : "8a6dd6b9353894785308784824571745"
+    }, {
+      "name" : "AssertionError: assert [340::test:, ..., 345:::, ...] == [340::test:, ..., 345:::, ...]\n  Left contains one more item: None:lastnamelTFv=\\2u%:firstname \\ L )e:middlename8[\n  Use -v to get the full diff",
+      "children" : [ {
+        "name" : "test_add_contact[None:lastnamelTFv=\\2u%:firstname \\ L )e:middlename8[]",
+        "uid" : "7cbcce043755fec",
+        "parentUid" : "57cee7f57f49d0027704dd79c20743f2",
+        "status" : "failed",
+        "time" : {
+          "start" : 1642361598119,
+          "stop" : 1642361601755,
+          "duration" : 3636
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "None:lastnamelTFv=\\2u%:firstname \\ L )e:middlename8[" ]
+      } ],
+      "uid" : "57cee7f57f49d0027704dd79c20743f2"
+    }, {
+      "name" : "AssertionError: assert 'email#>/}+DX...2\\nemail3+ k!' == 'email#>/}+DX...\\nemail3+  k!'\n    email#>/}+DX\n    email2\n  - email3+  k!\n  ?         -\n  + email3+ k!",
+      "children" : [ {
+        "name" : "test_all_contacts_from_home_page_vs_db",
+        "uid" : "b192b322927eacc8",
+        "parentUid" : "eaa7e914f08fbeea393d2bdaab531121",
+        "status" : "failed",
+        "time" : {
+          "start" : 1642361609062,
+          "stop" : 1642361612552,
+          "duration" : 3490
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "eaa7e914f08fbeea393d2bdaab531121"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  }, {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: [name=\"lastname\"]\nStacktrace:\nWebDriverError@chrome://remote/content/shared/webdriver/Errors.jsm:181:5\nNoSuchElementError@chrome://remote/content/shared/webdriver/Errors.jsm:393:5\nelement.find/</<@chrome://remote/content/marionette/element.js:299:16",
+      "children" : [ {
+        "name" : "test_full_edit_contact",
+        "uid" : "eef724b7a764d1f1",
+        "parentUid" : "57a7e4059866f4f7cf56794d6f0f0670",
+        "status" : "broken",
+        "time" : {
+          "start" : 1642361623479,
+          "stop" : 1642361626336,
+          "duration" : 2857
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "57a7e4059866f4f7cf56794d6f0f0670"
+    }, {
+      "name" : "AttributeError: 'NoneType' object has no attribute 'group'",
+      "children" : [ {
+        "name" : "test_phones_on_contact_view_page",
+        "uid" : "cbdd5425d37002a5",
+        "parentUid" : "4275126efd978a824e4c8f2963e9923f",
+        "status" : "broken",
+        "time" : {
+          "start" : 1642361645722,
+          "stop" : 1642361647173,
+          "duration" : 1451
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "4275126efd978a824e4c8f2963e9923f"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ]
+}

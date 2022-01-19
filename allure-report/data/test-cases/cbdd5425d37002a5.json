@@ -1,0 +1,108 @@
+{
+  "uid" : "cbdd5425d37002a5",
+  "name" : "test_phones_on_contact_view_page",
+  "fullName" : "test.test_phones#test_phones_on_contact_view_page",
+  "historyId" : "20082a8709fda6e17eb1a099fbf885ed",
+  "time" : {
+    "start" : 1642361645722,
+    "stop" : 1642361647173,
+    "duration" : 1451
+  },
+  "status" : "broken",
+  "statusMessage" : "AttributeError: 'NoneType' object has no attribute 'group'",
+  "statusTrace" : "app = <fixture.application.Application object at 0x000000000402BF70>\n\n    def test_phones_on_contact_view_page(app):\n>       contact_from_view_page = app.contact.get_contact_frow_view_page(0)\n\ntest\\test_phones.py:11: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nself = <fixture.contact.ContactHelper object at 0x000000000400D1F0>, index = 0\n\n    def get_contact_frow_view_page(self, index):\n        wd = self.app.driver\n        self.open_contact_to_view_by_index(index)\n        text = wd.find_element(By.ID, \"content\").text\n>       home_telephone = re.search(\"H: (.*)\", text).group(1)\nE       AttributeError: 'NoneType' object has no attribute 'group'\n\nfixture\\contact.py:190: AttributeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "stop",
+    "time" : {
+      "start" : 1642361567109,
+      "stop" : 1642361567109,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "app",
+    "time" : {
+      "start" : 1642361645661,
+      "stop" : 1642361645720,
+      "duration" : 59
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "stop::fin",
+    "time" : {
+      "start" : 1642361647195,
+      "stop" : 1642361649732,
+      "duration" : 2537
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "test"
+  }, {
+    "name" : "suite",
+    "value" : "test_phones"
+  }, {
+    "name" : "host",
+    "value" : "PC"
+  }, {
+    "name" : "thread",
+    "value" : "7424-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "test.test_phones"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "cbdd5425d37002a5.json",
+  "parameterValues" : [ ]
+}
